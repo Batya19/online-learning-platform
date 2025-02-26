@@ -1,0 +1,31 @@
+<mat-toolbar color="primary">
+    <span routerLink="/" class="cursor-pointer">Online Courses</span>
+    
+    <span class="spacer"></span>
+    
+    <ng-container *ngIf="!isLoggedIn()">
+      <button mat-button routerLink="/login">Login</button>
+      <button mat-button routerLink="/register">Register</button>
+    </ng-container>
+    
+    <ng-container *ngIf="isLoggedIn()">
+      <button mat-button routerLink="/courses">All Courses</button>
+      <button mat-button routerLink="/my-courses">My Courses</button>
+      
+      <ng-container *ngIf="isTeacher()">
+        <button mat-button routerLink="/manage-courses">Manage Courses</button>
+      </ng-container>
+      
+      <button mat-button [matMenuTriggerFor]="userMenu">
+        {{ currentUser?.name }}
+        <mat-icon>account_circle</mat-icon>
+      </button>
+      
+      <mat-menu #userMenu="matMenu">
+        <button mat-menu-item (click)="logout()">
+          <mat-icon>exit_to_app</mat-icon>
+          <span>Logout</span>
+        </button>
+      </mat-menu>
+    </ng-container>
+  </mat-toolbar>
