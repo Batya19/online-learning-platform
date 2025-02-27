@@ -53,13 +53,16 @@ export class CourseService {
   deleteLesson(courseId: number, id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${courseId}/lessons/${id}`);
   }
-  
+
   enrollToCourse(courseId: number): Observable<void> {
     return this.http.post<void>(`${this.apiUrl}/${courseId}/enroll`, {});
   }
-  
+
   unenrollFromCourse(courseId: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${courseId}/unenroll`);
   }
-  
+
+  getTeacherCourses(): Observable<Course[]> {
+    return this.http.get<Course[]>(`${this.apiUrl}/teacher`);
+  }
 }

@@ -3,16 +3,18 @@
         <h1>Welcome to Online Course Platform</h1>
         <p class="subtitle">Learn, Teach, Grow - All in One Place</p>
 
-        <div class="cta-section" *ngIf="!isLoggedIn">
-            <button mat-raised-button color="primary" routerLink="/register">Register Now</button>
-            <button mat-stroked-button color="primary" routerLink="/login">Login</button>
-        </div>
-
-        <div class="welcome-back" *ngIf="isLoggedIn">
-            <h2>Welcome back, {{ userName }}!</h2>
-            <button mat-raised-button color="primary" routerLink="/courses">Browse Courses</button>
-            <button mat-stroked-button color="primary" routerLink="/my-courses">My Courses</button>
-        </div>
+        @if (!isLoggedIn) {
+            <div class="cta-section">
+                <button mat-raised-button color="primary" routerLink="/register">Register Now</button>
+                <button mat-stroked-button color="primary" routerLink="/login">Login</button>
+            </div>
+        } @else {
+            <div class="welcome-back">
+                <h2>Welcome back, {{ userName }}!</h2>
+                <button mat-raised-button color="primary" routerLink="/courses">Browse Courses</button>
+                <button mat-stroked-button color="primary" routerLink="/my-courses">My Courses</button>
+            </div>
+        }
     </div>
 
     <div class="features-section">

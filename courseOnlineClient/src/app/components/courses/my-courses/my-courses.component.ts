@@ -10,20 +10,20 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { RouterModule } from '@angular/router';
-import { NgIf, NgFor } from '@angular/common';
 
 @Component({
   selector: 'app-my-courses',
-  imports: [MatCardModule,
+  standalone: true,
+  imports: [
+    MatCardModule,
     MatButtonModule,
     MatIconModule,
     MatSnackBarModule,
     MatProgressSpinnerModule,
-    NgIf,
-    NgFor,
-    RouterModule],
+    RouterModule,
+  ],
   templateUrl: './my-courses.component.html',
-  styleUrl: './my-courses.component.css'
+  styleUrls: ['./my-courses.component.css']
 })
 export class MyCoursesComponent implements OnInit {
   enrolledCourses: Course[] = [];

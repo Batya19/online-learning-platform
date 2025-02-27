@@ -18,8 +18,6 @@ import { NgIf, NgFor } from '@angular/common';
     MatIconModule,
     MatSnackBarModule,
     MatProgressSpinnerModule,
-    NgIf,
-    NgFor,
     RouterModule],
   templateUrl: './course-list.component.html',
   styleUrl: './course-list.component.css'

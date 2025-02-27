@@ -8,31 +8,41 @@
         <mat-form-field appearance="outline">
           <mat-label>Full Name</mat-label>
           <input matInput formControlName="name" required>
-          <mat-error *ngIf="registerForm.get('name')?.hasError('required')">
-            Name is required
-          </mat-error>
+          @if (registerForm.get('name')?.hasError('required')) {
+            <mat-error>
+              Name is required
+            </mat-error>
+          }
         </mat-form-field>
 
         <mat-form-field appearance="outline">
           <mat-label>Email</mat-label>
           <input matInput type="email" formControlName="email" required>
-          <mat-error *ngIf="registerForm.get('email')?.hasError('required')">
-            Email is required
-          </mat-error>
-          <mat-error *ngIf="registerForm.get('email')?.hasError('email')">
-            Please enter a valid email address
-          </mat-error>
+          @if (registerForm.get('email')?.hasError('required')) {
+            <mat-error>
+              Email is required
+            </mat-error>
+          }
+          @if (registerForm.get('email')?.hasError('email')) {
+            <mat-error>
+              Please enter a valid email address
+            </mat-error>
+          }
         </mat-form-field>
 
         <mat-form-field appearance="outline">
           <mat-label>Password</mat-label>
           <input matInput type="password" formControlName="password" required>
-          <mat-error *ngIf="registerForm.get('password')?.hasError('required')">
-            Password is required
-          </mat-error>
-          <mat-error *ngIf="registerForm.get('password')?.hasError('minlength')">
-            Password must be at least 6 characters
-          </mat-error>
+          @if (registerForm.get('password')?.hasError('required')) {
+            <mat-error>
+              Password is required
+            </mat-error>
+          }
+          @if (registerForm.get('password')?.hasError('minlength')) {
+            <mat-error>
+              Password must be at least 6 characters
+            </mat-error>
+          }
         </mat-form-field>
 
         <mat-form-field appearance="outline">
@@ -41,9 +51,11 @@
             <mat-option value="student">Student</mat-option>
             <mat-option value="teacher">Teacher</mat-option>
           </mat-select>
-          <mat-error *ngIf="registerForm.get('role')?.hasError('required')">
-            Role is required
-          </mat-error>
+          @if (registerForm.get('role')?.hasError('required')) {
+            <mat-error>
+              Role is required
+            </mat-error>
+          }
         </mat-form-field>
 
         <div class="form-actions">

@@ -1,53 +1,55 @@
-<!-- src/app/components/courses/course-list/course-list.component.html -->
 <div class="course-list-container">
-    <h1>Available Courses</h1>
-    
-    <div *ngIf="loading" class="loading-spinner">
-      <mat-spinner></mat-spinner>
-    </div>
-    
-    <div *ngIf="error" class="error-message">
-      {{ error }}
-    </div>
-    
-    <div *ngIf="!loading && !error && courses.length === 0" class="empty-state">
-      <mat-icon>school</mat-icon>
-      <p>No courses available at the moment.</p>
-    </div>
-    
-    <div class="courses-grid" *ngIf="!loading && !error && courses.length > 0">
-      <mat-card *ngFor="let course of courses" class="course-card">
-        <mat-card-header>
-          <mat-card-title>{{ course.title }}</mat-card-title>
-          <mat-card-subtitle>Teacher: {{ course.teacherName }}</mat-card-subtitle>
-        </mat-card-header>
-        
-        <mat-card-content>
-          <p>{{ course.description }}</p>
-        </mat-card-content>
-        
-        <mat-card-actions align="end">
-          <button 
-            mat-raised-button 
-            color="primary" 
-            *ngIf="!isEnrolled(course.id!)" 
-            (click)="enrollToCourse(course.id!)">
-            Enroll
-          </button>
-          <button 
-            mat-raised-button 
-            color="warn" 
-            *ngIf="isEnrolled(course.id!)" 
-            (click)="unenrollFromCourse(course.id!)">
-            Unenroll
-          </button>
-          <button 
-            mat-button 
-            color="primary" 
-            [routerLink]="['/courses', course.id]">
-            View Details
-          </button>
-        </mat-card-actions>
-      </mat-card>
-    </div>
+  <h1>Available Courses</h1>
+
+  @if (loading) {
+  <div class="loading-spinner">
+    <mat-spinner></mat-spinner>
   </div>
+  }
+
+  @if (error) {
+  <div class="error-message">
+    {{ error }}
+  </div>
+  }
+
+  @if (!loading && !error && courses.length === 0) {
+  <div class="empty-state">
+    <mat-icon>school</mat-icon>
+    <p>No courses available at the moment.</p>
+  </div>
+  }
+
+  @if (!loading && !error && courses.length > 0) {
+  <div class="courses-grid">
+    @for (course of courses; track course.id) {
+    <mat-card class="course-card">
+      <mat-card-header>
+        <mat-card-title>{{ course.title }}</mat-card-title>
+        <mat-card-subtitle>Teacher: {{ course.teacherName }}</mat-card-subtitle>
+      </mat-card-header>
+
+      <mat-card-content>
+        <p>{{ course.description }}</p>
+      </mat-card-content>
+
+      <mat-card-actions align="end">
+        @if (!isEnrolled(course.id!)) {
+        <button mat-raised-button color="primary" (click)="enrollToCourse(course.id!)">
+          Enroll
+        </button>
+        }
+        @if (isEnrolled(course.id!)) {
+        <button mat-raised-button color="warn" (click)="unenrollFromCourse(course.id!)">
+          Unenroll
+        </button>
+        }
+        <button mat-button color="primary" [routerLink]="['/courses', course.id]">
+          View Details
+        </button>
+      </mat-card-actions>
+    </mat-card>
+    }
+  </div>
+  }
+</div>

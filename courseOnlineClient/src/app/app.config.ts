@@ -7,5 +7,6 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'; // הוספת HttpClient כאן
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes), provideAnimationsAsync(), provideAnimationsAsync(), provideHttpClient(withInterceptorsFromDi())]
+  providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes),
+  provideAnimationsAsync(), provideAnimationsAsync(), provideHttpClient(withInterceptorsFromDi())]
 };
